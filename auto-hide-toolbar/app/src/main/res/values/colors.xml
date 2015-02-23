@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Colors auto-generated from http://www.materialpalette.com/blue/teal-->
+    <color name="primary">#2196F3</color>
+    <color name="primary_dark">#1976D2</color>
+    <color name="primary_light">#BBDEFB</color>
+    <color name="accent">#009688</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#727272</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#B6B6B6</color>
+
+    <!--From source-->
+    <color name="color_primary">#f44336</color>
+    <color name="color_primary_dark">#d32f2f</color>
+    <color name="shadow">#44000000</color>
+</resources>
