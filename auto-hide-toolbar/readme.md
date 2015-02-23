@@ -1,3 +1,5 @@
+# auto-hide-toolbar #
+
 This project demonstrates how to show and hide the `Toolbar` (formallyy known as `ActionBar`) when scrolling.
 
 Example code included:
