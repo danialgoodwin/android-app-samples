@@ -1,9 +1,9 @@
-package net.simplyadvanced.autohidetoolbar;
+package net.simplyadvanced.autohidetoolbar.quickhide;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-public abstract class HidingScrollListener extends RecyclerView.OnScrollListener {
+public abstract class HidingScrollListener1 extends RecyclerView.OnScrollListener {
     private static final int HIDE_THRESHOLD = 20;
     private int scrolledDistance = 0;
     private boolean controlsVisible = true;

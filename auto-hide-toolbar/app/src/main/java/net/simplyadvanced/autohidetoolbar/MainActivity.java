@@ -1,5 +1,7 @@
 package net.simplyadvanced.autohidetoolbar;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,79 +10,41 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+
+import net.simplyadvanced.autohidetoolbar.quickhide.QuickHideActivity;
+import net.simplyadvanced.autohidetoolbar.slowhide.SlowHideActivity;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/** The main (and only) page for this app. This holds the list of items, Toolbar, and FAB. */
+/** The main page for this app to choose between the different AutoHideToolbar implementations. */
 public class MainActivity extends ActionBarActivity {
-
-    private Toolbar mToolbar;
-    private ImageButton mFabButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        initToolbar();
-        mFabButton = (ImageButton) findViewById(R.id.fabButton);
-        mFabButton.setOnClickListener(new View.OnClickListener() {
+        LinearLayout rootContainer = new LinearLayout(this);
+        rootContainer.setOrientation(LinearLayout.VERTICAL);
+        rootContainer.addView(createButton(this, QuickHideActivity.class, "Quick hide"));
+        rootContainer.addView(createButton(this, SlowHideActivity.class, "Slow hide"));
+        setContentView(rootContainer);
+    }
+
+    private static Button createButton(final Activity activity, final Class<?> activityTo, String title) {
+        Button button = new Button(activity);
+        button.setText(title);
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                activity.startActivity(new Intent(activity, activityTo));
             }
         });
-        initRecyclerView();
-    }
-
-    private void initToolbar() {
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
-        setTitle(getString(R.string.app_name));
-        mToolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
-    }
-
-    private void initRecyclerView() {
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(createItemList());
-        recyclerView.setAdapter(recyclerAdapter);
-        //setting up our OnScrollListener
-        recyclerView.setOnScrollListener(new HidingScrollListener() {
-            @Override
-            public void onHide() {
-                hideViews();
-            }
-
-            @Override
-            public void onShow() {
-                showViews();
-            }
-        });
-    }
-
-    private void hideViews() {
-        mToolbar.animate().translationY(-mToolbar.getHeight()).setInterpolator(new AccelerateInterpolator(2));
-
-        FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) mFabButton.getLayoutParams();
-        int fabBottomMargin = lp.bottomMargin;
-        mFabButton.animate().translationY(mFabButton.getHeight()+fabBottomMargin).setInterpolator(new AccelerateInterpolator(2)).start();
-    }
-
-    private void showViews() {
-        mToolbar.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2));
-        mFabButton.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2)).start();
-    }
-
-    private List<String> createItemList() {
-        List<String> itemList = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
-            itemList.add("Item " + i);
-        }
-        return itemList;
+        return button;
     }
 
 }

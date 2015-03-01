@@ -6,6 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import net.simplyadvanced.autohidetoolbar.R;
+import net.simplyadvanced.autohidetoolbar.RecyclerHeaderViewHolder;
+import net.simplyadvanced.autohidetoolbar.RecyclerItemViewHolder;
+
 import java.util.List;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

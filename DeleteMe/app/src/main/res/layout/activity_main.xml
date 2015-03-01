@@ -1,0 +1,115 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                tools:context=".MainActivity">
+    <!--android:paddingLeft="@dimen/activity_horizontal_margin"-->
+    <!--android:paddingRight="@dimen/activity_horizontal_margin"-->
+    <!--android:paddingTop="@dimen/activity_vertical_margin"-->
+    <!--android:paddingBottom="@dimen/activity_vertical_margin"-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="8dp"
+            app:floatingLabel="highlight"
+            app:baseColor="#0056d3"
+            app:primaryColor="#982360"
+            app:errorColor="#ddaa00"
+            android:textSize="24dp"
+            android:hint="Temperature (F)"/>
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            app:floatingLabel="highlight"
+            app:baseColor="#0056d3"
+            app:primaryColor="#982360"
+            app:errorColor="#ddaa00"
+            android:textSize="24dp"
+            android:hint="Density"/>
+
+    </LinearLayout>
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Saybolt seconds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24dp"
+                />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="24dp"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Centipoise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24dp"
+                />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="24dp"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Centistoke"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24dp"
+                />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="24dp"
+                />
+
+        </TableRow>
+
+
+    </TableLayout>
+
+</LinearLayout>
