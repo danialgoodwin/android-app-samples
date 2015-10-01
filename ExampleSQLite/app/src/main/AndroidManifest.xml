@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="net.simplyadvanced.examplesqlite.app" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+
+        <provider android:name=".provider.BirthProvider"
+            android:authorities="com.javacodegeeks.provider.Birthday">
+        </provider>
+
+        <provider
+            android:name=".providervogellafull.provider.MyTodoContentProvider"
+            android:authorities="de.vogella.android.todos.contentprovider" >
+        </provider>
+
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".sqliteminimal.SqliteMinimalActivity" android:label="SQLite Minimal Activity" />
+        <activity android:name=".sqlitesimple.SqliteSimpleActivity" android:label="SQLite Simple Activity" />
+        <activity android:name=".sqlitevogella.SqliteVogellaActivity" android:label="SQLite Vogella Activity" />
+        <activity android:name=".provider.SimpleProviderActivity" android:label="Simple Provider Activity" />
+
+        <activity android:name=".providervogellafull.TodosOverviewActivity" android:label="TODOs Overview (Vogella Full)" />
+        <activity android:name=".providervogellafull.TodoDetailActivity" android:label="TODO Detail (Vogella Full)"
+            android:windowSoftInputMode="stateVisible|adjustResize"/>
+
+    </application>
+
+</manifest>

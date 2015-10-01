@@ -65,33 +65,33 @@ public class MainActivity extends ActionBarActivity {
                 log("onProviderDisabled(provider=" + provider + ")");
             }
         });
-        lm.addGpsStatusListener(new GpsStatus.Listener() {
-            @Override
-            public void onGpsStatusChanged(int event) {
-                mGpsStatus = lm.getGpsStatus(mGpsStatus); // Updates GpsStatus.
-                mGpsTextView.setText("Just a test!!!!!!");
-                mGpsTextView.setText(extractGpsStatusInfo(mGpsStatus));
-                switch (event) {
-                    case GpsStatus.GPS_EVENT_FIRST_FIX:
-                        log("onGpsStatusChanged(" + event + "), GPS_EVENT_FIRST_FIX");
-                        break;
-                    case GpsStatus.GPS_EVENT_STARTED:
-                        log("onGpsStatusChanged(" + event + "), GPS_EVENT_STARTED");
-                        break;
-                    case GpsStatus.GPS_EVENT_STOPPED:
-                        log("onGpsStatusChanged(" + event + "), GPS_EVENT_STOPPED");
-                        break;
-                    case GpsStatus.GPS_EVENT_SATELLITE_STATUS:
-                        log("onGpsStatusChanged(" + event + "), GPS_EVENT_SATELLITE_STATUS");
-                        break;
-                }
-            }
-        });
+//        lm.addGpsStatusListener(new GpsStatus.Listener() {
+//            @Override
+//            public void onGpsStatusChanged(int event) {
+//                mGpsStatus = lm.getGpsStatus(mGpsStatus); // Updates GpsStatus.
+//                mGpsTextView.setText("Just a test!!!!!!");
+//                mGpsTextView.setText(extractGpsStatusInfo(mGpsStatus));
+//                switch (event) {
+//                    case GpsStatus.GPS_EVENT_FIRST_FIX:
+//                        log("onGpsStatusChanged(" + event + "), GPS_EVENT_FIRST_FIX");
+//                        break;
+//                    case GpsStatus.GPS_EVENT_STARTED:
+//                        log("onGpsStatusChanged(" + event + "), GPS_EVENT_STARTED");
+//                        break;
+//                    case GpsStatus.GPS_EVENT_STOPPED:
+//                        log("onGpsStatusChanged(" + event + "), GPS_EVENT_STOPPED");
+//                        break;
+//                    case GpsStatus.GPS_EVENT_SATELLITE_STATUS:
+//                        log("onGpsStatusChanged(" + event + "), GPS_EVENT_SATELLITE_STATUS");
+//                        break;
+//                }
+//            }
+//        });
         lm.addNmeaListener(new GpsStatus.NmeaListener() {
             @Override
             public void onNmeaReceived(long timestamp, String nmea) {
                 log("onNmeaReceived()");
-                mNmeaTextView.setText(extractNmeaInfo(timestamp, nmea));
+                mNmeaTextView.setText(nmea + "\n" + extractNmeaInfo(timestamp, nmea));
             }
         });
     }
@@ -100,10 +100,11 @@ public class MainActivity extends ActionBarActivity {
         String info = "GpsStatus: ";
         if (gpsStatus == null) { return info + "null"; }
 
-        info += "\nNumber of satellites: " + gpsStatus.getSatellites();
+//        info += "\nNumber of satellites: " + gpsStatus.getSatellites();
         info += "\nMax satellites: " + gpsStatus.getMaxSatellites();
         info += "\nTime to first fix: " + gpsStatus.getTimeToFirstFix();
 
+        int numSattelites = 0;
         Iterable<GpsSatellite> satellites = gpsStatus.getSatellites();
         for (GpsSatellite satellite : satellites) {
             info += "\nSatellite " + satellite.toString() + ": azimuth=" + satellite.getAzimuth();
@@ -113,7 +114,9 @@ public class MainActivity extends ActionBarActivity {
             info += "\nSatellite " + satellite.toString() + ": hasAlmanac=" + satellite.hasAlmanac();
             info += "\nSatellite " + satellite.toString() + ": usedInFix=" + satellite.usedInFix();
             info += "\nSatellite " + satellite.toString() + ": hasEphemeris=" + satellite.hasEphemeris();
+            numSattelites++;
         }
+        info += "\nNumber of satellites: " + numSattelites;
 
         return info;
     }

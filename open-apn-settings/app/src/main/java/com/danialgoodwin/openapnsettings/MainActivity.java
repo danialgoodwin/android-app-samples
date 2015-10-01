@@ -23,12 +23,19 @@ public class MainActivity extends Activity {
         LinearLayout root = (LinearLayout) findViewById(R.id.root);
         addShortcutButton(this, root, "Settings", "com.android.settings", null);
 //        addShortcutButton(this, root, "ApnEditor", "com.android.settings", "ApnEditor");
+
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            // Didn't work on "Samsung SM-G900V", "Verizon Wireless", "Release Version: 4.4.2"
             addShortcutButton(this, root, "APN Settings", "com.android.settings", "Settings$ApnSettingsActivity");
         } else {
             addShortcutButton(this, root, "APN Settings", "com.android.settings", "ApnSettings");
         }
+
+        // Force-closed on "Samsung SM-G900V", "Verizon Wireless", "Release Version: 4.4.2"
         addShortcutButton(this, root, "Radio Info", "com.android.settings", "RadioInfo");
+
+        // Force-closed on "Samsung SM-G900V", "Verizon Wireless", "Release Version: 4.4.2"
         addShortcutButton(this, root, "Testing Settings", "com.android.settings", "TestingSettings");
         addShortcutButton(this, root, "Mobile Network Settings", "com.android.phone", "MobileNetworkSettings");
     }
